@@ -1,6 +1,6 @@
 %define  module	cvxopt
 %define name   	python-%{module}
-%define version 0.8.2
+%define version 0.9
 %define release %mkrel 1
 
 Summary: 	Free convex optimization package for Python
@@ -10,7 +10,6 @@ Release:	%{release}
 Source0:	%{module}-%{version}.tar.bz2
 Patch0:		setup32.py.patch
 Patch1:		setup64.py.patch
-Patch2:		UFconfig.mk.patch
 License:	GPL
 Group:		Development/Python
 Url:		http://abel.ee.ucla.edu/cvxopt
@@ -50,7 +49,6 @@ Python programming language. It provides
 %else
 %patch0 -p0
 %endif
-%patch2 -p0
 
 %build
 cd src/
