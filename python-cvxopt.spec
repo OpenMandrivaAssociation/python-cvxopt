@@ -1,7 +1,7 @@
 %define  module	cvxopt
 %define name   	python-%{module}
 %define version 0.9
-%define release %mkrel 1
+%define release %mkrel 2
 
 Summary: 	Free convex optimization package for Python
 Name: 	      	%{name}
