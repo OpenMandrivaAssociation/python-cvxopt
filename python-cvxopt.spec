@@ -1,7 +1,7 @@
-%define  module	cvxopt
+%define module	cvxopt
 %define name   	python-%{module}
-%define version 0.9
-%define release %mkrel 2
+%define version 0.9.1
+%define release %mkrel 1
 
 Summary: 	Free convex optimization package for Python
 Name: 	      	%{name}
@@ -64,4 +64,4 @@ cd src/
 
 %files -f INSTALLED_FILES
 %defattr(-,root,root)
-%doc doc/cvxopt examples/ LICENSE
+%doc doc/html/ examples/ LICENSE
