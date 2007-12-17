@@ -13,7 +13,6 @@ Patch1:		setup64.py.patch
 License:	GPL
 Group:		Development/Python
 Url:		http://abel.ee.ucla.edu/cvxopt
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	libgfortran
 BuildRequires:	libgfortran, python-devel
 BuildRequires:	blas-devel, lapack-devel, fftw3-devel, glpk-devel
