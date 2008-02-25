@@ -1,16 +1,16 @@
 %define module	cvxopt
 %define name   	python-%{module}
-%define version 0.9.2
+%define version 0.9.3
 %define release %mkrel 1
 
 Summary: 	Free convex optimization package for Python
 Name: 	      	%{name}
 Version:	%{version}
 Release:	%{release}
-Source0:	%{module}-%{version}.tar.bz2
+Source0:	%{module}-%{version}.tar.lzma
 Patch0:		setup32.py.patch
 Patch1:		setup64.py.patch
-License:	GPL
+License:	GPLv3+
 Group:		Development/Python
 Url:		http://abel.ee.ucla.edu/cvxopt
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
