@@ -1,7 +1,7 @@
 %define module	cvxopt
 %define name   	python-%{module}
-%define version 1.0
-%define release %mkrel 2
+%define version 1.1
+%define release %mkrel 1
 
 Summary: 	Free convex optimization package for Python
 Name: 	      	%{name}
@@ -17,6 +17,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	libgfortran
 BuildRequires:	libgfortran, python-devel
 BuildRequires:	blas-devel, lapack-devel, fftw3-devel, glpk-devel
+%py_requires -d
 
 %description
 CVXOPT is a free software package for convex optimization based on the
