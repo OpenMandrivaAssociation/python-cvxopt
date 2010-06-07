@@ -1,6 +1,6 @@
 %define module	cvxopt
 %define name   	python-%{module}
-%define version 1.1.1
+%define version 1.1.2
 %define release %mkrel 1
 
 Summary: 	Free convex optimization package for Python
@@ -15,7 +15,7 @@ Group:		Development/Python
 Url:		http://abel.ee.ucla.edu/cvxopt
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires:	libgfortran
-BuildRequires:	libgfortran, python-sphinx, tetex-latex
+BuildRequires:	libgfortran, python-sphinx
 BuildRequires:	blas-devel, lapack-devel, fftw3-devel, glpk-devel
 %py_requires -d
 
@@ -56,8 +56,7 @@ Python programming language. It provides
 pushd src/
 %__python setup.py build
 popd
-make -C doc latex
-make -C doc/build/latex all-pdf
+make -C doc html
 
 %install
 %__rm -rf %{buildroot}
@@ -70,4 +69,4 @@ popd
 
 %files -f FILE_LIST
 %defattr(-,root,root)
-%doc doc/build/latex/*.pdf examples/ LICENSE
+%doc doc/build/html examples/ LICENSE
