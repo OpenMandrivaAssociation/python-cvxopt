@@ -54,14 +54,14 @@ Python programming language. It provides
 
 %build
 pushd src/
-%__python setup.py build
+PYTHONDONTWRITEBYTECODE= %__python setup.py build
 popd
 make -C doc html
 
 %install
 %__rm -rf %{buildroot}
 pushd src/
-%__python setup.py install --root=%{buildroot} --record=../FILE_LIST
+PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=../FILE_LIST
 popd
 
 %clean
