@@ -1,7 +1,7 @@
 %define module	cvxopt
 %define name   	python-%{module}
 %define version 1.1.3
-%define release %mkrel 2
+%define release %mkrel 4
 
 Summary: 	Free convex optimization package for Python
 Name: 	      	%{name}
@@ -10,12 +10,13 @@ Release:	%{release}
 Source0:	%{module}-%{version}.tar.gz
 Patch0:		setup32.py.patch
 Patch1:		setup64.py.patch
+Patch2:		cvxopt-1.1.3-underlink.patch
 License:	GPLv3+
 Group:		Development/Python
 Url:		http://abel.ee.ucla.edu/cvxopt
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Requires:	libgfortran
-BuildRequires:	libgfortran, python-sphinx
+Requires:	gcc-gfortran
+BuildRequires:	gcc-gfortran, python-sphinx
 BuildRequires:	blas-devel, lapack-devel, fftw3-devel, glpk-devel
 %py_requires -d
 
@@ -51,6 +52,7 @@ Python programming language. It provides
 %else
 %patch0 -p0
 %endif
+%patch2 -p1
 
 %build
 pushd src/
