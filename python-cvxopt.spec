@@ -72,3 +72,74 @@ popd
 %files -f FILE_LIST
 %defattr(-,root,root)
 %doc doc/build/html examples/ LICENSE
+
+
+%changelog
+* Wed Jan 11 2012 Lev Givon <lev@mandriva.org> 1.1.4-1
++ Revision: 759656
+- Update to 1.1.4.
+
+* Sat Dec 03 2011 Paulo Andrade <pcpa@mandriva.com.br> 1.1.3-4
++ Revision: 737558
+- Do not explicitly require libgfortran but gcc-gfortran.
+
+* Wed Nov 03 2010 Paulo Andrade <pcpa@mandriva.com.br> 1.1.3-2mdv2011.0
++ Revision: 593037
++ rebuild (emptylog)
+
+* Tue Oct 19 2010 Lev Givon <lev@mandriva.org> 1.1.3-1mdv2011.0
++ Revision: 586754
+- Update to 1.1.3.
+
+* Tue Jul 13 2010 Lev Givon <lev@mandriva.org> 1.1.2-1mdv2011.0
++ Revision: 551363
+- Update to 1.1.2.
+
+* Wed Apr 01 2009 Lev Givon <lev@mandriva.org> 1.1.1-1mdv2010.0
++ Revision: 363359
+- Update to 1.1.1.
+
+* Tue Jan 06 2009 Lev Givon <lev@mandriva.org> 1.1-1mdv2009.1
++ Revision: 326017
+- Update to 1.1.
+
+* Fri Aug 08 2008 Thierry Vignaud <tv@mandriva.org> 1.0-2mdv2009.0
++ Revision: 269021
+- rebuild early 2009.0 package (before pixel changes)
+
+* Fri May 02 2008 Lev Givon <lev@mandriva.org> 1.0-1mdv2009.0
++ Revision: 200193
+- Update to 1.0.
+
+* Mon Feb 25 2008 Lev Givon <lev@mandriva.org> 0.9.3-1mdv2008.1
++ Revision: 174864
+- Update to 0.9.3.
+
+* Thu Jan 03 2008 Lev Givon <lev@mandriva.org> 0.9.2-1mdv2008.1
++ Revision: 142318
+- Update to 0.9.2.
+
+  + Olivier Blin <blino@mandriva.org>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+* Fri Dec 07 2007 Lev Givon <lev@mandriva.org> 0.9.1-1mdv2008.1
++ Revision: 116321
+- Update to 0.9.1.
+  Use new devel library naming policy.
+
+* Fri Nov 09 2007 Lev Givon <lev@mandriva.org> 0.9-2mdv2008.1
++ Revision: 106990
+- Bump release to rebuild against lapack 3.1.1.
+- Update to 0.9.
+
+* Sun Aug 05 2007 Lev Givon <lev@mandriva.org> 0.8.2-1mdv2008.0
++ Revision: 59131
+- Import python-cvxopt
+
+
+
+* Wed Jun 13 2007 Lev Givon <lev@mandriva.org> 0.8.2-1mdv2007.1
+- Initial Mandriva package.
