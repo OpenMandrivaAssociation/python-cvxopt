@@ -1,21 +1,24 @@
 %define module	cvxopt
 %define name   	python-%{module}
-%define version 1.1.4
-%define release 2
+%define version 1.1.6
+%define release 1
 
 Summary: 	Free convex optimization package for Python
 Name: 	      	%{name}
 Version:	%{version}
 Release:	%{release}
 Source0:	%{module}-%{version}.tar.gz
-Patch0:		setup32.py.patch
-Patch1:		setup64.py.patch
-Patch2:		cvxopt-1.1.3-underlink.patch
+Patch0:		%{name}-setup.py.patch
+Patch1:		%{name}-underlink.patch
+# Will submit patch0 to upstream ASAP
+Patch2:         %{name}-fixglpkinclude.patch
+# Sent upstream 31 Jul 2013.  Move from obsolete glpk API to new API.
+Patch3:		%{name}-glpk.patch
 License:	GPLv3+
 Url:		http://abel.ee.ucla.edu/cvxopt
 Requires:	gcc-gfortran
 BuildRequires:	gcc-gfortran, python-sphinx
-BuildRequires:	blas-devel, lapack-devel, fftw3-devel, glpk-devel
+BuildRequires:	blas-devel, lapack-devel, fftw3-devel, glpk-devel, gsl-devel
 BuildRequires:	python-devel
 
 %description
@@ -45,24 +48,22 @@ Python programming language. It provides
 
 %prep
 %setup -q -n %{module}-%{version}
+%patch0 -p1
+%patch1 -p1
+%patch2 -p0
+%patch3 -p0
+
+# Fix library path
 %ifarch x86_64
-%patch1 -p0
-%else
-%patch0 -p0
+  sed -i "s|/usr/lib|%{_libdir}|" setup.py
 %endif
-%patch2 -p1
 
 %build
-pushd src/
 PYTHONDONTWRITEBYTECODE= %__python setup.py build
-popd
 make -C doc html
 
 %install
-%__rm -rf %{buildroot}
-pushd src/
-PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=../FILE_LIST
-popd
+PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=FILE_LIST
 
 %files -f FILE_LIST
 %doc doc/build/html examples/ LICENSE
