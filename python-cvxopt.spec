@@ -1,3 +1,4 @@
+%define build_doc	0
 %define module	cvxopt
 %define name   	python-%{module}
 %define version 1.1.6
@@ -60,10 +61,15 @@ Python programming language. It provides
 
 %build
 PYTHONDONTWRITEBYTECODE= %__python setup.py build
+%if %{build_doc}
 make -C doc html
+%endif
 
 %install
 PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=FILE_LIST
 
 %files -f FILE_LIST
-%doc doc/build/html examples/ LICENSE
+%if %{build_doc}
+%doc doc/build/html
+%endif
+%doc examples/ LICENSE
