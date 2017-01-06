@@ -1,0 +1,69 @@
+--- a/setup.py.orig	2016-11-30 00:35:21.000000000 -0700
++++ a/setup.py	2016-11-30 10:28:42.620743132 -0700
+@@ -7,11 +7,11 @@ import os, sys, platform
+ import versioneer
+ 
+ # Modifiy this if BLAS and LAPACK libraries are not in /usr/lib.
+-BLAS_LIB_DIR = '/usr/lib'
++BLAS_LIB_DIR = '/usr/lib/atlas'
+ 
+ # Default names of BLAS and LAPACK libraries
+-BLAS_LIB = ['blas']
+-LAPACK_LIB = ['lapack']
++BLAS_LIB = ['satlas']
++LAPACK_LIB = ['satlas']
+ BLAS_EXTRA_LINK_ARGS = []
+ 
+ # Set environment variable BLAS_NOUNDERSCORES=1 if your BLAS/LAPACK do
+@@ -20,7 +20,7 @@ BLAS_NOUNDERSCORES = False
+ 
+ # Set to 1 if you are using the random number generators in the GNU
+ # Scientific Library.
+-BUILD_GSL = 0
++BUILD_GSL = 1
+ 
+ # Directory containing libgsl (used only when BUILD_GSL = 1).
+ GSL_LIB_DIR = '/usr/lib'
+@@ -29,7 +29,7 @@ GSL_LIB_DIR = '/usr/lib'
+ GSL_INC_DIR = '/usr/include/gsl'
+ 
+ # Set to 1 if you are installing the fftw module.
+-BUILD_FFTW = 0
++BUILD_FFTW = 1
+ 
+ # Directory containing libfftw3 (used only when BUILD_FFTW = 1).
+ FFTW_LIB_DIR = '/usr/lib'
+@@ -38,7 +38,7 @@ FFTW_LIB_DIR = '/usr/lib'
+ FFTW_INC_DIR = '/usr/include'
+ 
+ # Set to 1 if you are installing the glpk module.
+-BUILD_GLPK = 0
++BUILD_GLPK = 1
+ 
+ # Directory containing libglpk (used only when BUILD_GLPK = 1).
+ GLPK_LIB_DIR = '/usr/lib'
+@@ -47,13 +47,13 @@ GLPK_LIB_DIR = '/usr/lib'
+ GLPK_INC_DIR = '/usr/include'
+ 
+ # Set to 1 if you are installing the DSDP module.
+-BUILD_DSDP = 0
++BUILD_DSDP = 0
+ 
+ # Directory containing libdsdp (used only when BUILD_DSDP = 1).
+ DSDP_LIB_DIR = '/usr/lib'
+ 
+ # Directory containing dsdp5.h (used only when BUILD_DSDP = 1).
+-DSDP_INC_DIR = '/usr/include/dsdp'
++DSDP_INC_DIR = '/usr/include/DSDP'
+ 
+ # Guess SUITESPARSE_LIB_DIR and SUITESPARSE_INC_DIR
+ lnx_dist = platform.linux_distribution()
+@@ -68,7 +68,7 @@ elif platform.platform().startswith("Dar
+ else:
+     # default
+     SUITESPARSE_LIB_DIR = '/usr/lib'
+-    SUITESPARSE_INC_DIR = '/usr/include'
++    SUITESPARSE_INC_DIR = '/usr/include/suitesparse'
+ 
+ # Directory containing SuiteSparse source
+ SUITESPARSE_SRC_DIR = ''
