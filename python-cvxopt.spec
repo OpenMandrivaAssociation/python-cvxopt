@@ -1,26 +1,26 @@
 %define build_doc	0
 %define module	cvxopt
-%define name   	python-%{module}
-%define version 1.1.6
-%define release 2
+%define __noautoreq 'lib(s|t)atlas\\.so'
 
 Summary: 	Free convex optimization package for Python
-Name: 	      	%{name}
-Version:	%{version}
-Release:	%{release}
+Name: 	      	python-%{module}
+Version:	1.1.9
+Release:	1
 Source0:	%{module}-%{version}.tar.gz
-Patch0:		%{name}-setup.py.patch
-Patch1:		%{name}-underlink.patch
-# Will submit patch0 to upstream ASAP
-Patch2:         %{name}-fixglpkinclude.patch
-# Sent upstream 31 Jul 2013.  Move from obsolete glpk API to new API.
-Patch3:		%{name}-glpk.patch
+Patch0:		%{name}-setup.patch
 License:	GPLv3+
 Url:		http://abel.ee.ucla.edu/cvxopt
 Requires:	gcc-gfortran
-BuildRequires:	gcc-gfortran, python-sphinx
-BuildRequires:	blas-devel, lapack-devel, fftw3-devel, glpk-devel, gsl-devel
+BuildRequires:	gcc-gfortran
+BuildRequires:	python-sphinx
+BuildRequires:	suitesparse-devel
+BuildRequires:	fftw3-devel
+BuildRequires:	glpk-devel
+BuildRequires:	gsl-devel
 BuildRequires:	python-devel
+BuildRequires:	python-setuptools
+BuildRequires:	python2-devel
+BuildRequires:	python2-setuptools
 
 %description
 CVXOPT is a free software package for convex optimization based on the
@@ -47,29 +47,47 @@ Python programming language. It provides
 * a modeling tool for specifying convex piecewise-linear optimization problems
   (which has been superseded by the more powerful CVXMOD package).
 
+%package -n python2-cvxopt
+Requires:	gcc-gfortran
+
 %prep
 %setup -q -n %{module}-%{version}
-%patch0 -p1
-%patch1 -p1
-%patch2 -p0
-%patch3 -p0
+%apply_patches
 
 # Fix library path
 %ifarch x86_64
   sed -i "s|/usr/lib|%{_libdir}|" setup.py
 %endif
 
+cp -a . %py2dir
+
+
 %build
-PYTHONDONTWRITEBYTECODE= %__python setup.py build
+PYTHONDONTWRITEBYTECODE= %__python setup.py build build_ext -lm
 %if %{build_doc}
 make -C doc html
 %endif
 
-%install
-PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=FILE_LIST
+pushd %py2dir
+PYTHONDONTWRITEBYTECODE= %__python2 setup.py build build_ext -lm
 
-%files -f FILE_LIST
+%install
+PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot}
+
+pushd %py2dir
+PYTHONDONTWRITEBYTECODE= %__python2 setup.py install --root=%{buildroot} 
+
+
+%files
 %if %{build_doc}
 %doc doc/build/html
 %endif
 %doc examples/ LICENSE
+%py3_platsitedir/cvxopt
+%py3_platsitedir/cvxopt*.egg-info
+
+%files -n python2-cvxopt
+%doc examples/ LICENSE
+%py2_platsitedir/cvxopt
+%py2_platsitedir/cvxopt*.egg-info
+
