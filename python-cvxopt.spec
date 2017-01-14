@@ -17,7 +17,7 @@ BuildRequires:	suitesparse-devel
 BuildRequires:	fftw3-devel
 BuildRequires:	glpk-devel
 BuildRequires:	gsl-devel
-BuildRequires:	python-devel
+BuildRequires:	python3-devel
 BuildRequires:	python-setuptools
 BuildRequires:	python2-devel
 BuildRequires:	python2-setuptools
