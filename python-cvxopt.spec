@@ -21,6 +21,7 @@ BuildRequires:	python3-devel
 BuildRequires:	python-setuptools
 BuildRequires:	python2-devel
 BuildRequires:	python2-setuptools
+BuildRequires:	atlas-devel
 
 %description
 CVXOPT is a free software package for convex optimization based on the
