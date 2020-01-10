@@ -53,7 +53,7 @@ Requires:	gcc-gfortran
 
 %prep
 %setup -q -n %{module}-%{version}
-%apply_patches
+%autopatch -p1
 
 # Fix library path
 %ifarch x86_64
