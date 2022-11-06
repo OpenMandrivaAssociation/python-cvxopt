@@ -4,12 +4,12 @@
 
 Summary: 	Free convex optimization package for Python
 Name: 	      	python-%{module}
-Version:	1.1.9
+Version:	1.3.0
 Release:	1
-Source0:	%{module}-%{version}.tar.gz
+Source0:	https://files.pythonhosted.org/packages/source/c/cvxopt/cvxopt-%{version}.tar.gz
 Patch0:		%{name}-setup.patch
 License:	GPLv3+
-Url:		http://abel.ee.ucla.edu/cvxopt
+Url:		https://cvxopt.org/
 Requires:	gcc-gfortran
 BuildRequires:	gcc-gfortran
 BuildRequires:	python-sphinx
@@ -19,8 +19,6 @@ BuildRequires:	glpk-devel
 BuildRequires:	gsl-devel
 BuildRequires:	python3-devel
 BuildRequires:	python-setuptools
-BuildRequires:	python2-devel
-BuildRequires:	python2-setuptools
 BuildRequires:	pkgconfig(atlas)
 
 %description
@@ -48,9 +46,6 @@ Python programming language. It provides
 * a modeling tool for specifying convex piecewise-linear optimization problems
   (which has been superseded by the more powerful CVXMOD package).
 
-%package -n python2-cvxopt
-Requires:	gcc-gfortran
-
 %prep
 %setup -q -n %{module}-%{version}
 %autopatch -p1
@@ -69,15 +64,8 @@ PYTHONDONTWRITEBYTECODE= %__python setup.py build build_ext -lm
 make -C doc html
 %endif
 
-pushd %py2dir
-PYTHONDONTWRITEBYTECODE= %__python2 setup.py build build_ext -lm
-
 %install
 PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot}
-
-pushd %py2dir
-PYTHONDONTWRITEBYTECODE= %__python2 setup.py install --root=%{buildroot} 
-
 
 %files
 %if %{build_doc}
@@ -86,9 +74,3 @@ PYTHONDONTWRITEBYTECODE= %__python2 setup.py install --root=%{buildroot}
 %doc examples/ LICENSE
 %py3_platsitedir/cvxopt
 %py3_platsitedir/cvxopt*.egg-info
-
-%files -n python2-cvxopt
-%doc examples/ LICENSE
-%py2_platsitedir/cvxopt
-%py2_platsitedir/cvxopt*.egg-info
-
