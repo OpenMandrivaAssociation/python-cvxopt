@@ -4,7 +4,7 @@
 
 Summary: 	Free convex optimization package for Python
 Name: 	      	python-%{module}
-Version:	1.3.0
+Version:	1.3.2
 Release:	1
 Source0:	https://files.pythonhosted.org/packages/source/c/cvxopt/cvxopt-%{version}.tar.gz
 Patch0:		%{name}-setup.patch
@@ -51,7 +51,7 @@ Python programming language. It provides
 %autopatch -p1
 
 # Fix library path
-%ifarch x86_64
+%if "%{_lib}" != "lib"
   sed -i "s|/usr/lib|%{_libdir}|" setup.py
 %endif
 
