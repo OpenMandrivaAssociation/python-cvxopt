@@ -47,16 +47,11 @@ Python programming language. It provides
   (which has been superseded by the more powerful CVXMOD package).
 
 %prep
-%setup -q -n %{module}-%{version}
-%autopatch -p1
-
+%autosetup -p1 -n %{module}-%{version}
 # Fix library path
-%if "%{_lib}" != "lib"
+%if "%{_libdir}" != "/usr/lib"
   sed -i "s|/usr/lib|%{_libdir}|" setup.py
 %endif
-
-cp -a . %py2dir
-
 
 %build
 PYTHONDONTWRITEBYTECODE= %__python setup.py build build_ext -lm
