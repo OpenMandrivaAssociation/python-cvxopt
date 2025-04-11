@@ -1,11 +1,11 @@
 %define build_doc	0
 %define module	cvxopt
-%define __noautoreq 'lib(s|t)atlas\\.so'
+#define __noautoreq 'lib(s|t)atlas\\.so'
 
 Summary: 	Free convex optimization package for Python
 Name: 	      	python-%{module}
 Version:	1.3.2
-Release:	1
+Release:	2
 Source0:	https://files.pythonhosted.org/packages/source/c/cvxopt/cvxopt-%{version}.tar.gz
 Patch0:		%{name}-setup.patch
 License:	GPLv3+
@@ -19,7 +19,8 @@ BuildRequires:	glpk-devel
 BuildRequires:	gsl-devel
 BuildRequires:	python3-devel
 BuildRequires:	python-setuptools
-BuildRequires:	pkgconfig(atlas)
+#BuildRequires:	pkgconfig(atlas)
+BuildRequires:	pkgconfig(flexiblas)
 
 %description
 CVXOPT is a free software package for convex optimization based on the
