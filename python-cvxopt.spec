@@ -5,7 +5,7 @@
 Summary: 	Free convex optimization package for Python
 Name: 	      	python-%{module}
 Version:	1.3.2
-Release:	2
+Release:	3
 Source0:	https://files.pythonhosted.org/packages/source/c/cvxopt/cvxopt-%{version}.tar.gz
 Patch0:		%{name}-setup.patch
 License:	GPLv3+
