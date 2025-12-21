@@ -11,6 +11,7 @@ Patch0:		%{name}-setup.patch
 License:	GPLv3+
 Url:		https://cvxopt.org/
 Requires:	gcc-gfortran
+BuildRequires:	make
 BuildRequires:	gcc-gfortran
 BuildRequires:	python-sphinx
 BuildRequires:	suitesparse-devel
