@@ -4,10 +4,10 @@
 
 Summary: 	Free convex optimization package for Python
 Name: 	      	python-%{module}
-Version:	1.3.2
-Release:	3
+Version:	1.3.3
+Release:	1
 Source0:	https://files.pythonhosted.org/packages/source/c/cvxopt/cvxopt-%{version}.tar.gz
-Patch0:		%{name}-setup.patch
+# dropped (no longer applies): Patch0:		%{name}-setup.patch
 License:	GPLv3+
 Url:		https://cvxopt.org/
 Requires:	gcc-gfortran
@@ -49,7 +49,7 @@ Python programming language. It provides
   (which has been superseded by the more powerful CVXMOD package).
 
 %prep
-%autosetup -p1 -n %{module}-%{version}
+%autosetup -p1 -n cvxopt-1.3.3
 # Fix library path
 %if "%{_libdir}" != "/usr/lib"
   sed -i "s|/usr/lib|%{_libdir}|" setup.py
