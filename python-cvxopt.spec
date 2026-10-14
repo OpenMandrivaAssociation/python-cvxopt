@@ -51,12 +51,28 @@ Python programming language. It provides
 
 %prep
 %autosetup -p1 -n cvxopt-1.3.3
-# Fix library path
-%if "%{_libdir}" != "/usr/lib"
-  sed -i "s|/usr/lib|%{_libdir}|" setup.py
-%endif
+# setup() does not pass a version, so the egg metadata becomes 0.0.0.
+sed -i "s/setup (name = 'cvxopt',/setup (name = 'cvxopt', version='%{version}',/" setup.py
 
 %build
+# OpenMandriva ships BLAS/LAPACK through flexiblas. There is no libblas.so
+# or liblapack.so. The 1.3.2 package also built the gsl, fftw, and glpk
+# extensions; 1.3.3 leaves them off unless these are set, and their
+# libraries live in /usr/lib64, not /usr/lib.
+export CVXOPT_BLAS_LIB=flexiblas
+export CVXOPT_LAPACK_LIB=flexiblas
+export CVXOPT_BLAS_LIB_DIR=%{_libdir}
+export CVXOPT_BUILD_GSL=1
+export CVXOPT_GSL_LIB_DIR=%{_libdir}
+export CVXOPT_GSL_INC_DIR=%{_includedir}/gsl
+export CVXOPT_BUILD_FFTW=1
+export CVXOPT_FFTW_LIB_DIR=%{_libdir}
+export CVXOPT_FFTW_INC_DIR=%{_includedir}
+export CVXOPT_BUILD_GLPK=1
+export CVXOPT_GLPK_LIB_DIR=%{_libdir}
+export CVXOPT_GLPK_INC_DIR=%{_includedir}
+export CVXOPT_SUITESPARSE_LIB_DIR=%{_libdir}
+export CVXOPT_SUITESPARSE_INC_DIR=%{_includedir}/suitesparse
 PYTHONDONTWRITEBYTECODE= %__python setup.py build build_ext -lm
 %if %{build_doc}
 make -C doc html
