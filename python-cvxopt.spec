@@ -5,10 +5,11 @@
 Summary: 	Free convex optimization package for Python
 Name: 	      	python-%{module}
 Version:	1.3.3
-Release:	1
+Release:	2
 Source0:	https://files.pythonhosted.org/packages/source/c/cvxopt/cvxopt-%{version}.tar.gz
 # dropped (no longer applies): Patch0:		%{name}-setup.patch
 License:	GPLv3+
+Group:		Development/Python
 Url:		https://cvxopt.org/
 Requires:	gcc-gfortran
 BuildRequires:	make
@@ -18,8 +19,8 @@ BuildRequires:	suitesparse-devel
 BuildRequires:	fftw3-devel
 BuildRequires:	glpk-devel
 BuildRequires:	gsl-devel
-BuildRequires:	python3-devel
-BuildRequires:	python-setuptools
+BuildRequires:	pkgconfig(python3)
+BuildRequires:	python%{pyver}dist(setuptools)
 #BuildRequires:	pkgconfig(atlas)
 BuildRequires:	pkgconfig(flexiblas)
 
